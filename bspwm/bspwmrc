@@ -1,0 +1,42 @@
+#!/bin/sh
+
+sxhkd &
+
+# autostart programs
+wmname LG3D
+feh --bg-scale -d /home/vegard/.config/bspwm/btqplv4tonv31.png
+
+setxkbmap -option grp:shifts_toggle us,no
+
+#compton --config ~/.config/compton/compton.conf &
+compton --config .config/compton/compton.conf &
+~/.config/polybar/launch.sh
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc config border_width         0
+bspc config window_gap           10
+bspc config top_padding		 0
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config single_monocle       true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Zathura state=tiled desktop='^2'
+bspc rule -a steam state=floating
+bspc rule -a steam-runtime state=floating
+bspc rule -a steam-native state=floating
+bspc rule -a lutris state=floating
+bspc rule -a Emacs state=tiled desktop='^2'
+bspc rule -a Vmware state=tiled desktop='^3'
+bspc rule -a Vmplayer state=tiled desktop='^3'
+bspc rule -a QjackCtl state=floating 
+bspc rule -a Guitarix state=tiled
+bspc rule -a TelegramDesktop state=tiled desktop='^4'
+bspc rule -a discord state=tiled desktop='^4'
