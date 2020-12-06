@@ -1,0 +1,19 @@
+#!/bin/bash
+
+song_info=$(playerctl -p spotifyd metadata --format "{{ title }}\n{{ artist }}\n{{ album }}\n{{ mpris:artUrl }}")
+title=$(printf "%s""$song_info" | awk 'NR==1')
+artist=$(printf "%s""$song_info" | awk 'NR==2')
+album=$(printf "%s""$song_info" | awk 'NR==3' )
+link=$(printf "%s""$song_info" | awk 'NR==4')
+file="$artist"-"$album.jpg"
+name="$title\n$artist\n$album"
+#echo "$song_info"
+echo "$title"
+echo "$artist"
+echo "$album"
+echo "$file"
+echo "$link"
+if [ ! -f "/tmp/spotifyd/$file" ]; then
+	wget --output-document="/tmp/spotifyd/$file" "$link" &>/dev/null
+fi
+notify-send "Spotify" "$name" --icon=/tmp/spotifyd/"$file"

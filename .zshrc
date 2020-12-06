@@ -1,8 +1,19 @@
+#PATH
+PATH=~/.scripts/:$PATH
+PATH=~/.cargo/bin/:$PATH
+
 # Application keys
 typeset -g -A key
-
-# Vim keys
 ## bindkey -v
+
+# Colors
+autoload -U colors && colors
+export CLICOLORS=1
+LS_COLORS='no=00;37:fi=00:di=23;23:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
+export LS_COLORS
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+
 
 # Keybindings
 key[Home]="${terminfo[khome]}"
@@ -42,6 +53,11 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
+# Recent dirs
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':completion:*:*:cdr:*:*' menu selection
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -76,18 +92,26 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-# PROMPT=\$vcs_info_msg_0_'%# '
+#RPROMPT=\$vcs_info_msg_0_
+#PROMPT=\$vcs_info_msg_0_'%# '
 zstyle ':vcs_info:git:*' formats '%b'
+
+# Partial Completion
+## Case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 # Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Alias
 alias ls='ls --color=auto'
-alias tr="~/.scripts/trash.sh"
-alias ka="~/.scripts/killall.sh"
+alias cl='cdr -l'
+alias cr='cdr'
+alias la='ls -lah'
+
+# Removing partial line symbol
+export PROMPT_EOL_MARK=""
 
 # Prompt
-PROMPT=$'%F{blue}%B%~%b%f %F{green}\U22B3 %F{grey}% '
-RPROMPT=$'%F{blue}[%T]'
+RPROMPT='%F{blue}[%T]'
+PROMPT=$'%F{blue}%B%/%b%f\n%F{red}\U2BA1 %F{fg}'

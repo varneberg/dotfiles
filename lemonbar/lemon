@@ -1,0 +1,86 @@
+#!/bin/sh
+
+# Display
+width=$(xrandr | grep current | awk -F '[" "]' '{print $8}')
+height=30
+x=0
+y=20
+u_line=1
+geometry="$width"x"$height"
+
+wm_name=bspwm
+randr=lemonbar
+
+# Font
+font="Font Awesome 5 Free"
+
+# Colors
+fg="#22ffb52a"
+bg="#00f8f8f2"
+
+# Basic clock module
+clock() {
+	DATETIME=$(date "+%a %b %d, %H:%M")
+	echo "$DATETIME"
+}
+
+network() {
+	IP=$(ip route show | grep default | cut -d " " -f9)
+	echo "$IP"
+}
+
+cpu() {
+	echo "ps"
+}
+
+# Bspwm workspaces
+workspaces() {
+	
+    	for workspace in `bspc query -D`;do
+        if [ $workspace = "`bspc query -d -D`" ]
+        then
+		workspaces="$workspaces %{F#FFff0000}$workspace"
+        else
+        	workspaces="$workspaces %{F-}$workspace"
+         fi
+    	done
+	echo $workspaces
+}
+
+wspace() {
+       #w_space=$(bspc query -D --names | sed ':a;N;$!ba;s/\n/ /g')
+       for w_space in $(bspc query -D --names | sed ':a;N;$!ba;s/\n/ /g');do
+	       if [ $w_space = $(bspc query -D -d --names | sed ':a;N;$!ba;s/\n/ /g') ] 
+	       then
+		       wspace="$wspace %{F#FFff0000}$w_space"
+	       else
+		       wspace="$wspace %{F-}$w_space"
+	       fi
+       done
+       echo "$wspace"
+       #echo "$w_space"
+}
+
+print_bar(){
+	while true;do	
+		echo "%{l}$(wspace) %{c}$(clock) %{r}$(network)"
+	done
+}
+
+debug() {
+	echo -e "Width: $width\nHeight: $height\nFont: $font\nFg_color: $fg\nBg_color: $bg"
+}
+
+run() {
+	if [ $(pgrep -cx lemonbar) -gt 0 ] 
+	then
+		prev=$(pgrep lemonbar)
+		echo "Killing lemonbar($prev)"
+		killall lemonbar
+	fi
+	echo "Launching lemonbar"
+	debug
+	print_bar | lemonbar -p -g "$geometry" -F "$fg" -B "$bg" -u "$u_line" -f "$font" -o "$randr" -n "$wm_name"
+}
+
+run

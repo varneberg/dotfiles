@@ -1,35 +1,37 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #aa000000
+background = #1F1F1F
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #f8f8f2
+foreground = #FFFFFF
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+red = #e53935
+pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+teal = #00897b
+green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
+transparrent = #aa000000
+
 [bar/bestbar]
 width = 100%
-height = 25
+height = 30
 ;offset-x = 1%
 ;offset-y = 0.01%
 radius = 0
@@ -38,8 +40,8 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 0
-line-color = #f00
+line-size = 3
+line-color = #aa0000FF
 
 border-size = 0
 border-color = #00000000
@@ -47,53 +49,46 @@ border-color = #00000000
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 2
-module-margin-right = 0
+module-margin-left = 1
+module-margin-right = 1
 
-font-0 = Noto Sans:pixelsize=12;2
-font-1 = FontAwesome:style=Regular:size=12;0
-font-2 = siji:pixelsize=40;2
-font-3 = Unifont:style=Regular=12;0
+font-0 = "Hack Nerd Font:size=12;3"
+font-1 = "Material Design Icons:size=15;4"
 
-modules-left = bspwm
-modules-center = date
-modules-right = filesystem alsa pulseaudio memory cpu eth xkeyboard powermenu
+modules-left = bspwm xwindow
+modules-center = 
+modules-right = pulseaudio memory cpu eth date xkeyboard powermenu
 
 tray-position = right
-tray-padding = 0
+tray-padding = 1
 ;tray-background = #0063ff
 
 wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+#format = <label>
+label = %title:2:1%
+label-maxlen = 20
+label-underline = ${colors.light-green}
+
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 blacklist-1 = caps lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix = "󰥻 "
+format-prefix-foreground = ${colors.blue}
+format-prefix-underline = ${colors.blue}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.blue}
 
-label-indicator-padding = 2
+label-indicator-padding = 1
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
@@ -103,70 +98,177 @@ type = internal/mpd
 
 ; Host where mpd is running (either ip or domain name)
 ; Can also be the full path to a unix socket where mpd is running.
-host = 127.0.0.1
-port = 6600
-password = mysecretpassword
+;;host = 127.0.0.1
+;;port = 6600
+;;password = mysecretpassword
 
 ; Seconds to sleep between progressbar/song timer sync
 ; Default: 1
 interval = 2
 
-[module/filesystem]
-type = internal/fs
-interval = 25
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone> (deprecated)
+;   <icon-single> - Toggle playing only a single song. Replaces <icon-repeatone>
+;   <icon-consume>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online =  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-mount-0 = /
+;format-playing = ${self.format-online}
+;format-paused = ${self.format-online}
+;format-stopped = ${self.format-online}
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %free%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+; Available tags:
+;   <label-offline>
+;format-offline = <label-offline>
+
+; Available tokens:
+;   %artist%
+;   %album-artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song =  "%artist% - %title%"
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+;;abel-time = %elapsed% / %total%
+
+; Available tokens:
+;   None
+label-offline = "MPD is offline"
+
+; Only applies if <icon-X> is used
+icon-play = "󰁚"
+icon-pause = "󰏦"
+icon-stop = "󰙧"
+icon-prev = "󰙤"
+icon-next = "󰙢"
+icon-seekb = 󰙢
+icon-seekf = 󰙢
+icon-random = 󰙢
+icon-repeat = 󰓦
+icon-repeatone = 󰙢
+icon-single = 󰙢
+icon-consume = ✀
+
+; Used to display the state of random/repeat/repeatone/single
+; Only applies if <icon-[random|repeat|repeatone|single]> is used
+;;toggle-on-foreground = #ff
+;;toggle-off-foreground = #55
+
+; Only applies if <bar-progress> is used
+;;bar-progress-width = 45
+;;bar-progress-indicator = |
+;;bar-progress-fill = ─
+;;bar-progress-empty = ─
 
 [module/bspwm]
+
+red = #e53935
+pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+teal = #00897b
+green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
+transparrent = #aa000000
+
+
 type = internal/bspwm
 
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+ws-icon-0 = 1;󰎦
+ws-icon-1 = 2;󰎩
+ws-icon-2 = 3;󰎬
+ws-icon-3 = 4;󰎮
+ws-icon-4 = 5;󰎰
+ws-icon-5 = 6;󰎵
+ws-icon-6 = 7;󰎸
+ws-icon-7 = 8;󰊴
+ws-icon-8 = 9;󰎈
+ws-icon-9 = 10;󰅺
 
-label-occupied = %index%
-label-occupied-padding = 2
+format = <label-state> <label-mode>
 
-label-urgent = %index%!
+label-monitor = %name%
+label-focused = %icon%
+label-focused-foreground = ${colors.orange}
+#label-focused-background = ${colors.orange}
+label-focused-underline= ${colors.orange}
+label-focused-padding = 1
+
+label-occupied = %icon%
+label-occupied-padding = 1
+
+label-urgent = %icon%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
-label-empty = 
+label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 ; Separator in between workspaces
-;label-separator = |
+label-separator = 
 
 [module/cpu]
 type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+interval = 0.5
+format-prefix = "󰓅 "
+format-prefix-foreground = ${colors.red}
 format-underline = #f90000
 label = %percentage:2%%
 
+
 [module/memory]
+
+# Icons: 󰍛
+format = <label>
 type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label =%gb_free%
+interval = 1
+format-prefix = "󰍛 "
+format-prefix-foreground = ${colors.yellow}
+format-underline = ${colors.yellow}
+label =%gb_used%
+
 
 [module/eth]
 type = internal/network
 interface = enp7s0
-interval = 3.0
+interval = 10.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix = "󰟑 "
+format-connected-prefix-foreground = ${colors.green}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -175,160 +277,45 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/network]
-type = internal/network
-; Name of the network interface to display. You can get the names of the
-; interfaces on your machine with `ip link`
-; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
-interface = enp7s0 
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have 
-; an unknown state, even when they're running
-; Default: false
-unknown-as-up = true
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = <ramp-signal> <label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
-format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss = <animation-packetloss> <label-connected>
-
-; All labels support the following tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %local_ip6% [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-
-; Default: %ifname% %local_ip%
-label-connected = %local_ip% %downspeed:9%
-label-connected-foreground = #eefafafa
-
-; Default: (none)
-label-disconnected = not connected
-label-disconnected-foreground = #66ffffff
-
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; Only applies if <ramp-signal> is used
-ramp-signal-0 = 😱
-ramp-signal-1 = 😠
-ramp-signal-2 = 😒
-ramp-signal-3 = 😊
-ramp-signal-4 = 😃
-ramp-signal-5 = 😈
-
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0 = ⚠
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 📶
-animation-packetloss-1-foreground = #000000
-; Framerate in milliseconds
-animation-packetloss-framerate = 500
 
 [module/date]
 type = internal/date
 interval = 5
 
-date = "%d.%m  "
+date = "%a %b %d"
 date-alt = "%d.%m "
 
 time = %H:%M
 time-alt = %H:%M
 
+format-foreground = 
+format-background =
+format-prefix = "󰃮 " 
+format-prefix-foreground = ${colors.cyan}
+format-underline = ${colors.cyan}
+
+label = %time% %date%
+
+
+[module/spotify]
+type = custom/script
+interval = 2
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
-label = %date% %time%
-
-[module/alsa]
-type = internal/alsa
-
-; Soundcard to be used
-; Usually in the format hw:# where # is the card number
-; You can find the different card numbers in `/proc/asound/cards`
-master-soundcard = hw:1
-speaker-soundcard = default
-headphone-soundcard = default
-
-; Name of the master, speaker and headphone mixers
-; Use the following command to list available mixer controls:
-; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
-; If master, speaker or headphone-soundcard isn't the default, 
-; use `amixer -c # scontrols` instead where # is the number 
-; of the master, speaker or headphone soundcard respectively
-;
-; Default: Master
-master-mixer = Master
-
-; Optionally define speaker and headphone mixers
-; Default: none
-speaker-mixer = Speaker
-; Default: none
-;headphone-mixer = Headphone
-
-; NOTE: This is required if headphone_mixer is defined
-; Use the following command to list available device controls
-; $ amixer controls | sed -r "/CARD/\!d; s/.*=([0-9]+).*name='([^']+)'.*/printf '%3.0f: %s\n' '\1' '\2'/e" | sort
-; You may also need to use `amixer -c # controls` as above for the mixer names
-; Default: none
-;headphone-id = 9
-
-; Use volume mapping (similar to amixer -M and alsamixer), where the increase in volume is linear to the ear
-; Default: false
-mapped = true
-
-; Interval for volume increase/decrease (in percent points)
-; Default: 5
-interval = 5
+format = <label>
+exec = playerctl -s -p spotifyd metadata --format "{{ title }}"
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+format-volume-underline = ${colors.orange}
+format-volume = <label-volume>
+label-volume =  %percentage:3%%
+label-volume-foreground = ${colors.foreground}
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+label-muted = 󰖁
+label-muted-foreground = ${colors.foreground-alt}
 
-bar-volume-width = 10
+bar-volume-width = 7
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -367,21 +354,21 @@ ramp-foreground = ${colors.foreground-alt}
 [module/powermenu]
 type = custom/menu
 
-expand-right = false
+expand-right = true
 
 format-spacing = 1
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-open ="󰣇 "
+label-open-foreground = ${colors.blue}
+label-close ="󰅚"
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
+menu-0-0 = "󰓦"
+menu-0-0-exec = reboot
+menu-0-1 ="󰐥"
+menu-0-1-exec = ~/.scripts/shutdown
 
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
@@ -392,10 +379,6 @@ menu-2-0 = power off
 menu-2-0-exec = poweroff
 menu-2-1-exec = menu-open-0
 
-menu-3-0 = suspend
-menu-3-0-exec = suspend
-menu-3-1-exec = menu-open-0
-
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -405,7 +388,7 @@ screenchange-reload = true
 pseudo-transparency = true
 
 [global/wm]
-margin-top = 0
+margin-top = 2
 margin-bottom = 0
 
 ; vim:ft=dosini
