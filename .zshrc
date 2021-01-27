@@ -7,10 +7,10 @@ typeset -g -A key
 ## bindkey -v
 
 # Colors
-autoload -U colors && colors
+#autoload -U colors && colors
 export CLICOLORS=1
-LS_COLORS='no=00;37:fi=00:di=23;23:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
-export LS_COLORS
+#LS_COLORS='no=00;37:fi=00:di=23;23:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
+#export LS_COLORS
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 
@@ -46,11 +46,11 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-	autoload -Uz add-zle-hook-widget
-	function zle_application_mode_start { echoti smkx }
-	function zle_application_mode_stop { echoti rmkx }
-	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+autoload -Uz add-zle-hook-widget
+function zle_application_mode_start { echoti smkx }
+function zle_application_mode_stop { echoti rmkx }
+add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
 # Recent dirs
@@ -108,10 +108,10 @@ alias ls='ls --color=auto'
 alias cl='cdr -l'
 alias cr='cdr'
 alias la='ls -lah'
-
 # Removing partial line symbol
 export PROMPT_EOL_MARK=""
 
 # Prompt
-RPROMPT='%F{blue}[%T]'
-PROMPT=$'%F{blue}%B%/%b%f\n%F{red}\U2BA1 %F{fg}'
+#RPROMPT='%F{blue}[%T]'
+#PROMPT=$'%F{blue}%B%/%b%f\n%F{red}\U2BA1 %F{fg}'
+PROMPT="%F{red}%B%~%b%f %F{red}⟿ %f "

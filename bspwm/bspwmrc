@@ -14,7 +14,7 @@ setxkbmap -option grp:shifts_toggle us,no &
 dunst &
 
 # Tray bar
-#stalonetray &
+stalonetray &
 
 # redshift
 ~/.config/redshift/redshift.sh
@@ -48,16 +48,10 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Zathura state=tiled
-bspc rule -a Steam state=pseudo_tiled desktop='^8'
-bspc rule -a Steam-runtime state=pseudo_tiled desktop='^8'
-bspc rule -a Steam-native state=pseudo_tiled desktop='^8'
-bspc rule -a lutris state=pseudo_tiled desktop='^8'
+bspc rule -a lutris state=pseudo_tiled 
 bspc rule -a Emacs state=tiled
 bspc rule -a Vmware state=tiled
 bspc rule -a Vmplayer state=tiled
 bspc rule -a QjackCtl state=pseudo_tiled
 bspc rule -a Guitarix state=tiled
-bspc rule -a TelegramDesktop state=tiled desktop='^10'
-bspc rule -a discord state=tiled follow=off desktop='^10'
 bspc rule -a pycharm state=pseudo_tiled follow=off
-bspc rule -a spotify:* state=tiled follow=off desktop='^9'

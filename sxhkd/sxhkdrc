@@ -2,23 +2,66 @@
 # wm independent hotkeys
 #
 
-# ranger
-super + e
-	tilix -e ranger
+# Zathura
 
-# firefox
+super + z
+	zathura
+# lock screen
+alt + shift + x
+	systemctl suspend
+
+
+# audio control
+XF86AudioPlay
+	playerctl play-pause
+
+XF86AudioPrev
+	playerctl previous
+
+XF86AudioNext
+	playerctl next
+
+XF86AudioRaiseVolume
+	pamixer -i 10 # increase volume	
+
+XF86AudioLowerVolume
+	pamixer -d 10 # decrease volume
+
+XF86AudioMute
+	pamixer -t # toggle mute
+# file explorer
+super + e
+	kitty -e ranger
+
+# Firefox
 super + q
 	firefox
 
 # terminal emulator
 super + Return
-	tilix
+	kitty	
+
 # Screenshot
 Print
 	xfce4-screenshooter -w
+
 # program launcher
 super + space
-	rofi -show combi
+	rofi -modi "drun" -show drun -show-icons -width 20 -filter
+
+XF86Calculator
+	rofi -show calc 20 -normal-window
+
+alt + Tab
+	rofi -modi "window" -show window -show-icons
+
+# focus next desktop
+alt + space
+	bspc desktop -f next
+
+# focus previous desktop
+alt + shift + space
+	bspc desktop -f prev
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -31,11 +74,12 @@ super + Escape
 # quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
-# just close
+
+# close window
 super + w
 	bspc node -c
 
-# close and kill
+# close and kill application
 super + {_,shift + }w
 	bspc node -{c,k}
 

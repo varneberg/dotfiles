@@ -1,0 +1,14 @@
+xorg
+sof-firmware
+pulseaudio
+tlp
+thermald
+network-manager
+bspwm
+skxhd
+dhcpcd
+polybar
+firefox
+kitty
+redshift
+
