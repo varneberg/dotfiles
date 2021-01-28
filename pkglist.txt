@@ -11,4 +11,6 @@ polybar
 firefox
 kitty
 redshift
+pulseaudio
+pulseaudio-bluetooth
 
