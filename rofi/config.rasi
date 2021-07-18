@@ -1,7 +1,8 @@
 configuration {
- font: "hack 12";
- modi: "combi,calc,run";
- combi-modi: "window,run,calc";
+ font: "hack 14";
+ show-icons: true;
+ modi: "combi,run,drun";
+ combi-modi: "window,run";
  color-window: "argb:cc272822, argb:cc272822, argb:cc272822";
  color-normal: "argb:00f8f8f2, #d8dee8, argb:00f8f8f2, argb:00f8f8f2, #bf616a";
  color-active: "#272822, #f8f8f2, #2f343f, #2f343f, #f8f8f2";
