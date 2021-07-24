@@ -1,6 +1,8 @@
 #PATH
 PATH=~/.scripts/:$PATH
 PATH=~/.cargo/bin/:$PATH
+PATH=~/.local/bin:$PATH
+PATH="$NPM_PACKAGES/bin:$PATH"
 
 # Application keys
 typeset -g -A key
@@ -8,11 +10,10 @@ typeset -g -A key
 
 # Colors
 #autoload -U colors && colors
-export CLICOLORS=1
+#export CLICOLORS=1
 #LS_COLORS='no=00;37:fi=00:di=23;23:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
 #export LS_COLORS
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 
 # Keybindings
@@ -59,7 +60,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*:*:cdr:*:*' menu selection
 
 # History
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zsh/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -108,10 +109,21 @@ alias ls='ls --color=auto'
 alias cl='cdr -l'
 alias cr='cdr'
 alias la='ls -lah'
+source ~/.zsh/.alias
+
 # Removing partial line symbol
-export PROMPT_EOL_MARK=""
+# #export PROMPT_EOL_MARK=""
 
 # Prompt
 #RPROMPT='%F{blue}[%T]'
 #PROMPT=$'%F{blue}%B%/%b%f\n%F{red}\U2BA1 %F{fg}'
-PROMPT="%F{red}%B%~%b%f %F{red}⟿ %f "
+PROMPT="[%T] %F{red}%B%~%b%f %F{red}⟿ %f "
+
+# Environmental Variables
+
+##export MOZ_X11_EGL=1
+
+# Firefox
+export MOZ_USE_XINPUT2=1
+export MOZ_WEBRENDER=1
+
