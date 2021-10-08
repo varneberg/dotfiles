@@ -1,0 +1,16 @@
+zsh
+vlc
+p7zip
+emacs
+texlive-base
+libreoffice
+flameshot
+telegram-desktop
+firefox
+pavucontrol
+discord
+spotify
+terminator
+zathura
+zathura-djvu
+zathura-pdf-poppler
