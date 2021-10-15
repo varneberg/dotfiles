@@ -14,3 +14,7 @@ terminator
 zathura
 zathura-djvu
 zathura-pdf-poppler
+rofi
+ranger
+polybar
+
