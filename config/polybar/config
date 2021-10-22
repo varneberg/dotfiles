@@ -40,24 +40,25 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 0
 line-color = #aa0000FF
 
 border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = "Hack Nerd Font:size=12;3"
-font-1 = "Material Design Icons:size=15;4"
+font-0 = "Hack Nerd Font:size=11;3"
+#font-1 = "Material Design Icons:size=15;4"
+font-1 = Material Design Icons:style=Regular:size=13;3"
 
 modules-left = bspwm xwindow
-modules-center = 
-modules-right = pulseaudio memory cpu eth date xkeyboard powermenu
+modules-center = date
+modules-right = pulseaudio memory cpu xkeyboard battery powermenu
 
 tray-position = right
 tray-padding = 1
@@ -88,8 +89,8 @@ format-prefix-underline = ${colors.blue}
 label-layout = %layout%
 label-layout-underline = ${colors.blue}
 
-label-indicator-padding = 1
-label-indicator-margin = 1
+label-indicator-padding = 0
+label-indicator-margin = 0
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
@@ -233,33 +234,67 @@ label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = %icon%
+;label-empty = %icon%
+label-empty = 
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
+label-empty-padding = 0
 
 ; Separator in between workspaces
 label-separator = 
 
 [module/cpu]
 type = internal/cpu
-interval = 0.5
+interval = 2
 format-prefix = "󰓅 "
 format-prefix-foreground = ${colors.red}
 format-underline = #f90000
-label = %percentage:2%%
+label = %percentage:0%%
 
 
 [module/memory]
-
 # Icons: 󰍛
 format = <label>
 type = internal/memory
-interval = 1
+interval = 3
 format-prefix = "󰍛 "
 format-prefix-foreground = ${colors.yellow}
 format-underline = ${colors.yellow}
-label =%gb_used%
+label = %gb_used%
 
+[module/network]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+;ping-interval = 3
+udspeed-minwidth = 5
+accumulate-stats = true
+unknown-as-up = true
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+label-connected = %essid%
+label-connected-foreground = #eefafafa
+label-disconnected = 󰤮
+label-disconnected-foreground = #66ffffff
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 󰤯
+ramp-signal-1 = 󰤟
+ramp-signal-2 = 󰤢
+ramp-signal-3 = 󰤥
+ramp-signal-4 = 󰤨
+;format-ramp-signal-4-foreground = ${colors.green}
+;format-ramp-signal-3-foreground = ${colors.yellow}
+;format-ramp-signal-2 = ${colors.orange}
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
 
 [module/eth]
 type = internal/network
@@ -290,11 +325,12 @@ time-alt = %H:%M
 
 format-foreground = 
 format-background =
-format-prefix = "󰃮 " 
+#format-prefix = "󰃮 " 
 format-prefix-foreground = ${colors.cyan}
 format-underline = ${colors.cyan}
 
-label = %time% %date%
+label = %time%
+label-alt = %time% %date%
 
 
 [module/spotify]
@@ -351,23 +387,94 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+
+[module/battery]
+type = internal/battery
+full-at = 100
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+poll-interval = 3
+
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+format-full = <ramp-capacity> <label-full>
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 󰁺 
+ramp-capacity-1 = 󰁺 
+ramp-capacity-2 = 󰁻 
+ramp-capacity-3 = 󰁼 
+ramp-capacity-4 = 󰁽 
+ramp-capacity-5 = 󰁾 
+ramp-capacity-6 = 󰁿 
+ramp-capacity-7 = 󰂀 
+ramp-capacity-9 = 󰂂 
+ramp-capacity-10 = 󰁹 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 󰂆 
+animation-charging-1 = 󰂈 
+animation-charging-2 = 󰂉 
+animation-charging-3 = 󰂋 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = ""
+animation-discharging-1 = ""
+animation-discharging-2 = ""
+animation-discharging-3 = ""
+animation-discharging-4 = ""
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+
 [module/powermenu]
 type = custom/menu
 
 expand-right = true
 
-format-spacing = 1
+format-spacing = 2
 
-label-open ="󰣇 "
+label-open = "󰣇 "
 label-open-foreground = ${colors.blue}
-label-close ="󰅚"
+label-close ="󰅚 "
 label-close-foreground = ${colors.secondary}
-label-separator = |
+label-separator = 
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = "󰓦"
+menu-0-0 = "󰓦 "
 menu-0-0-exec = reboot
-menu-0-1 ="󰐥"
+menu-0-1 = "󰐥 "
 menu-0-1-exec = ~/.scripts/shutdown
 
 menu-1-0 = cancel

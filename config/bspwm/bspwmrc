@@ -1,6 +1,13 @@
 #!/bin/sh
 
+# keyboard mappings
 sxhkd &
+
+# policykit
+lxpolkit &
+
+# network tray applet
+nm-applet &
 
 # autostart programs
 wmname LG3D
@@ -14,32 +21,32 @@ setxkbmap -option grp:shifts_toggle us,no &
 dunst &
 
 # Tray bar
-stalonetray &
+#stalonetray &
 
 # redshift
-~/.config/redshift/redshift.sh
+#~/.config/redshift/redshift.sh &
 
 # compositor
-~/.config/compton/launch_compton
+picom --config ~/.config/picom/picom.conf --experimental-backends &
 
 # status bar
-~/.config/polybar/launch.sh
+~/.config/polybar/launch.sh 
 
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 # window settings
 bspc config focused_border_width         3
-bspc config focused_border_color         '#aa00aa'
-bspc config window_gap           12
+bspc config focused_border_color         '#f0847a'
+bspc config window_gap           8
 bspc config top_padding		 0
 bspc config bottom_padding	 0
 bspc config split_ratio          0
 bspc config borderless_monocle   true
 bspc config single_monocle       true
-bspc config gapless_monocle      false
+bspc config gapless_monocle      true 
 bspc config focus_follows_pointer  true
-bspc config border_radius 6
+bspc config border_radius 4
 
 
 # application rules
@@ -55,3 +62,4 @@ bspc rule -a Vmplayer state=tiled
 bspc rule -a QjackCtl state=pseudo_tiled
 bspc rule -a Guitarix state=tiled
 bspc rule -a pycharm state=pseudo_tiled follow=off
+bspc rule -a scratch state=floating sticky=on focus

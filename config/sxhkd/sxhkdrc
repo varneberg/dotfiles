@@ -3,13 +3,19 @@
 #
 
 # Zathura
-
 super + z
 	zathura
+
 # lock screen
 alt + shift + x
 	systemctl suspend
 
+# backlight
+XF86MonBrightnessUp
+	xbacklight -inc 10
+
+XF86MonBrightnessDown
+	xbacklight -dec 10
 
 # audio control
 XF86AudioPlay
@@ -29,12 +35,13 @@ XF86AudioLowerVolume
 
 XF86AudioMute
 	pamixer -t # toggle mute
+
 # file explorer
 super + e
 	kitty -e ranger
 
 # Firefox
-super + q
+super + b
 	firefox
 
 # terminal emulator
@@ -47,7 +54,7 @@ Print
 
 # program launcher
 super + space
-	rofi -modi "drun" -show drun -show-icons -width 20 -filter
+	rofi -show "drun" 
 
 XF86Calculator
 	rofi -show calc 20 -normal-window
@@ -56,12 +63,12 @@ alt + Tab
 	rofi -modi "window" -show window -show-icons
 
 # focus next desktop
-alt + space
-	bspc desktop -f next
+#alt + space
+#	bspc desktop -f next
 
 # focus previous desktop
-alt + shift + space
-	bspc desktop -f prev
+#alt + shift + space
+#	bspc desktop -f prev
 
 # make sxhkd reload its configuration files:
 super + Escape
