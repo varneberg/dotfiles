@@ -269,5 +269,36 @@ libinput-gestures
 xorg-xfontsel
 font-manager
 lxsession-gtk3
-system76-power
-system76-dkms
+jetbrains-toolbox
+sccache: No command specified
+sccache 0.2.15
+
+USAGE:
+    sccache [FLAGS] [OPTIONS] [cmd]...
+
+FLAGS:
+        --dist-auth       authenticate for distributed compilation
+        --dist-status     show status of the distributed client
+    -h, --help            Prints help information
+    -s, --show-stats      show cache statistics
+        --start-server    start background server
+        --stop-server     stop background server
+    -V, --version         Prints version information
+    -z, --zero-stats      zero statistics counters
+
+OPTIONS:
+        --package-toolchain <executable> <out>    package toolchain for distributed compilation
+        --stats-format <stats-format>
+            set output format of statistics [default: text]  [possible values: text, json]
+
+
+ARGS:
+    <cmd>...    
+
+Enabled features:
+    S3:        true
+    Redis:     true
+    Memcached: true
+    GCS:       true
+    Azure:     true
+

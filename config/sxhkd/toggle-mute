@@ -1,0 +1,3 @@
+#!/bin/bash
+dev=$(pactl get-default-source)
+pactl set-source-mute "$dev" toggle

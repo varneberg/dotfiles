@@ -6,13 +6,10 @@ sxhkd &
 # policykit
 lxpolkit &
 
-# network tray applet
-nm-applet &
-
 # autostart programs
-wmname LG3D
+wmname LG3D &
 
-feh --bg-fill -d /home/vegard/.config/bspwm/wallpapers/13.jpg
+feh --bg-fill -d /home/vegard/.config/bspwm/wallpapers/13.jpg &
 
 # keyboard switch function
 setxkbmap -option grp:shifts_toggle us,no &
@@ -62,4 +59,4 @@ bspc rule -a Vmplayer state=tiled
 bspc rule -a QjackCtl state=pseudo_tiled
 bspc rule -a Guitarix state=tiled
 bspc rule -a pycharm state=pseudo_tiled follow=off
-bspc rule -a scratch state=floating sticky=on focus
+bspc rule -a scratch state=floating sticky=true center=true rectangle=700x1000+0+0

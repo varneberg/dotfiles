@@ -36,9 +36,12 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pamixer -t # toggle mute
 
+XF86AudioMicMute
+	./toggle-mute
+
 # file explorer
 super + e
-	kitty -e ranger
+	nautilus
 
 # Firefox
 super + b
@@ -47,6 +50,10 @@ super + b
 # terminal emulator
 super + Return
 	kitty	
+
+# scratch terminal
+alt + space
+	kitty --class=scratch
 
 # Screenshot
 Print

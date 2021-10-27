@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Fifo
+PANEL_FIFO=/tmp/panel-fifo
+
+if [[ $(pgrep -cx panel) -gt 1 ]]; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+# Create new panel fifo
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+# Display
+width=$(xrandr | grep current | awk -F '[" "]' '{print $8}') 
+height=10
+geometry="$width"x"$height"
+u_line=0
+wm_name=bspwm
+randr=lemonbar
+
+# Fonts
+font="Jetbrains Mono Medium"
+icon_font="Material Design Icons Webfont"
+
+while true; do
+				echo -e $(date "+%H:%M")
+				sleep 15
+done > "$PANEL_FIFO" &
+
+
+bspc subscribe > "$PANEL_FIFO" &
+panel_bar < "$PANEL_FIFO" | lemonbar -p -g "$geometry" -f "$font" -o "$randr" -n "$wm_name" | sh &
+
+wait
