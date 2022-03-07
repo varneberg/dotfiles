@@ -123,16 +123,17 @@ alias sshk="kitty +kitten ssh"
 # Prompt
 setopt prompt_subst
 setopt PROMPT_SUBST
+
 NEWLINE=$'\n'
-PROMPT="${NEWLINE}[%F{6}%n@%m %F{1}%B%~%b%f]${NEWLINE}# "
+PROMPT="${NEWLINE}[%F{6}%n@%m %F{1}%B%~%b%f]${NEWLINE}%F{2}%B↳%b%f "
 RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{1}(%b)%f %r%f'
+zstyle ':vcs_info:git:*' formats '%F{1}(%b)%f %F{3}%r%f'
 zstyle ':vcs_info:*' enable git
 
-##export MOZ_X11_EGL=1
 
 # Firefox
 #export MOZ_USE_XINPUT2=1
+##export MOZ_X11_EGL=1
 #export MOZ_WEBRENDER=1
 
 
@@ -153,3 +154,4 @@ source <(kubectl completion zsh)
 alias k=kubectl
 alias tf=terraform
 #exec fish
+export PATH="$PATH:$HOME/.spicetify"
