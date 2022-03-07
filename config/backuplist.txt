@@ -1,0 +1,14 @@
+bspwm
+compton
+dunst
+kitty
+lemonbar
+picom
+polybar
+pulse
+ranger
+redshift
+rofi
+spotifyd
+sxhkd
+zathura
