@@ -2,7 +2,7 @@ set number 					" Line number
 set linebreak				" Break lines at word
 filetype indent on 	" File type detection
 set autoindent 			" Auto indent
-filetype plugin on
+filetype plugin on  " File type recognition
 syntax on	
 set tabstop=2				" Tab size
 set cursorline			" Line beneath cursor
@@ -14,4 +14,5 @@ set lazyredraw			" Faster macros
 set showmatch				" Parenthesis highlight
 set incsearch				" Better searching
 set ignorecase			" Case insensitive
+set mouse=a					" MacOS scrolling in iterm
 
