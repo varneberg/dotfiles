@@ -37,7 +37,7 @@ XF86AudioMute
 	pamixer -t # toggle mute
 
 XF86AudioMicMute
-	./toggle-mute
+	toggle-mute
 
 # file explorer
 super + e
@@ -52,8 +52,8 @@ super + Return
 	kitty	
 
 # scratch terminal
-alt + space
-	kitty --class=scratch
+alt + Return
+	scratchterm.sh
 
 # Screenshot
 Print

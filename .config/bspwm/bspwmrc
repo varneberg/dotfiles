@@ -9,7 +9,7 @@ lxpolkit &
 # autostart programs
 wmname LG3D &
 
-feh --bg-fill -d /home/vegard/.config/bspwm/wallpapers/13.jpg &
+feh --bg-fill -d /home/vegard/.config/bspwm/wallpapers/8.png &
 
 # keyboard switch function
 setxkbmap -option grp:shifts_toggle us,no &
@@ -28,6 +28,9 @@ picom --config ~/.config/picom/picom.conf --experimental-backends &
 
 # status bar
 ~/.config/polybar/launch.sh 
+
+# mute audio
+pamixer --set-volume 0 &
 
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
@@ -59,4 +62,5 @@ bspc rule -a Vmplayer state=tiled
 bspc rule -a QjackCtl state=pseudo_tiled
 bspc rule -a Guitarix state=tiled
 bspc rule -a pycharm state=pseudo_tiled follow=off
-bspc rule -a scratch state=floating sticky=true center=true rectangle=700x1000+0+0
+bspc rule -a scratch state=floating sticky=true center=true rectangle=1400x1000+0+0
+bspc rule -a Cpupower-gui state=floating
