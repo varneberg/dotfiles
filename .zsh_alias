@@ -1,0 +1,18 @@
+alias ls='ls --color=auto'
+alias cl='cdr -l'
+alias cr='cdr'
+alias la='ls -lah'
+#alias sshk="kitty +kitten ssh"
+alias tf=terraform
+alias k='kubectl'
+alias kns=kubens
+alias kx=kubectx
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias rosetta="arch -x86_64"
+alias rosetta-terraform="/usr/local/Cellar/terraform/1.2.0/bin/terraform"
+alias rtf="rosetta-terraform"
+alias gcm="git commit -m"
+alias gadd="git add ."
+alias gits="git status"
+alias gitp="git pull"
+alias gitd="git diff"
