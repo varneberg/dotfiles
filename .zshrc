@@ -23,9 +23,13 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 export LS_COLORS
 
 # Application keys
-#bindkey -e
+## Standard applications keys
+bindkey -e
 #typeset -g -A key
-bindkey -v # Vim keys
+
+## Vim keys
+#bindkey -v # Vim keys
+#export KEYTIMEOUT=1
 
 # Keybindings
 key[Home]="${terminfo[khome]}"
@@ -92,12 +96,6 @@ zstyle ':completion:*' menu select
 setopt COMPLETE_ALIASES
 zstyle ':completion::complete:*' gain-privileges 1
 
-#bindkey -M menuselect 'h' vim-backward-char
-#bindkey -M menuselect 'k' vim-up-line-or-history
-#bindkey -M menuselect 'l' vim-forward-char
-#bindkey -M menuselect 'j' vim-down-line-or-history
-#bindkey -v '^?' backward-delete-char
-
 autoload -Uz promptinit && promptinit
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 # End of lines added by compinstall
@@ -139,16 +137,16 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh_alias
 
 # Removing partial line symbol
-export PROMPT_EOL_MARK=""
+#export PROMPT_EOL_MARK=""
 
 # Prompt
 setopt prompt_subst
 setopt PROMPT_SUBST
 
 NEWLINE=$'\n'
-PROMPT="${NEWLINE}[%F{6}%n@%m%f] \$vcs_info_msg_0_ %F{1}%B%~%b%f${NEWLINE}%F{2}%B↳%b%f "
+PROMPT='${NEWLINE}[%F{6}%n@%m%f] $vcs_info_msg_0_ %F{1}%B%~%b%f${NEWLINE}%F{2}%B↳%b%f '
 RPROMPT=
-zstyle ':vcs_info:git:*' formats '%F{3}(%b)%f' #%F{3}%r%f'
+zstyle ':vcs_info:git:*' formats '%F{3}[%b]%f' #%F{3}%r%f'
 zstyle ':vcs_info:*' enable git
 
 # Firefox

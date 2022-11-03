@@ -1,18 +1,33 @@
+# Shell
 alias ls='ls --color=auto'
 alias cl='cdr -l'
 alias cr='cdr'
 alias la='ls -lah'
-#alias sshk="kitty +kitten ssh"
+
+# tf
 alias tf=terraform
+alias ta="terraform apply -auto-approve"
+alias tp="terraform plan"
+alias ti="terraform init -reconfigure"
+
+# k8s
 alias k='kubectl'
 alias kns=kubens
 alias kx=kubectx
+
+# macOS
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias rosetta="arch -x86_64"
-alias rosetta-terraform="/usr/local/Cellar/terraform/1.2.0/bin/terraform"
+alias rosetta-terraform="/usr/local/Cellar/terraform/1.3.1/bin/terraform"
 alias rtf="rosetta-terraform"
-alias gcm="git commit -m"
+
+# git
+alias gcm="git commit -m "
 alias gadd="git add ."
 alias gits="git status"
 alias gitp="git pull"
+alias gp="git pull"
 alias gitd="git diff"
+
+# path
+alias python=python3
