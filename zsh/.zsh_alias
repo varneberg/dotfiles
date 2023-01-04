@@ -1,0 +1,40 @@
+# Shell
+alias ls='ls --color=auto'
+alias cl='cdr -l'
+alias cr='cdr'
+alias la='ls -lah'
+
+# tf
+alias tf=terraform
+alias ta="terraform apply -auto-approve"
+alias tp="terraform plan"
+alias ti="terraform init -reconfigure"
+
+# k8s
+alias k='kubectl'
+alias kns=kubens
+alias kx=kubectx
+
+# MacOS
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias rosetta="arch -x86_64"
+alias rosetta-terraform="/usr/local/Cellar/terraform/1.3.1/bin/terraform"
+alias rtf="rosetta-terraform"
+
+# git
+alias gadd="git add ."
+alias gits="git status"
+alias gitp="git push"
+alias gp="git pull"
+alias gitd="git diff"
+
+# path
+alias python=python3
+
+alias kgpa="kubectl get pod -A"
+alias kgp="kubectl get pod"
+alias kgs="kubectl get service"
+alias kgsa="kubectl get service -A"
+
+# other
+alias spicetify="~/.spicetify/spicetify"
