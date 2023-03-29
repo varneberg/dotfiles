@@ -4,8 +4,10 @@ typeset -U PATH path
 export PATH=~/.npm-global/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games/:~/.npm-global/bin/:$PATH
 export PATH="$SPICETIFY_INSTALL:$PATH"
+export PATH=$PATH:/Users/vegard/.spicetify
 export PATH=/usr/local/bin/:/Library/Apple/usr/bin:$PATH
 export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/Tools/bin"
 
 #export PATH=~/.spicetiy/spicetify
 export SPICETIFY_INSTALL="/home/vegard/.spicetify"
@@ -38,3 +40,5 @@ export SHELL=/bin/zsh
 
 export KUBE_EDITOR="vim"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export PAGER=
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
