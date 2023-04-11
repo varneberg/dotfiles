@@ -29,6 +29,8 @@ rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:
 *.DS_STORE=00;90:\
 *.gitignore=00;90:\
 *.md=36:\
+*.txt=36:\
+*.py=32:\
 ";
 export LS_COLORS
 

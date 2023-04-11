@@ -3,6 +3,7 @@ alias ls='gls --group-directories-first --color=auto'
 alias cl='cdr -l'
 alias cr='cdr'
 alias la='ls -lah'
+alias szsh='source ~/.zshrc'
 
 # tf
 alias tf=terraform
