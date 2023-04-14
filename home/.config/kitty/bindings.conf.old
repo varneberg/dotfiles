@@ -1,24 +1,42 @@
-#: Config specifics
+#: Keyboard shortcuts
+map ctrl+shift+c	copy_to_clipboard
+map ctrl+shift+v	paste_from_clipboard
 kitty_mod ctrl+shift
 clear_all_shortcuts no
-map kitty_mod+f5 load_config_file
+# kitten_alias hints hints --hints-offset=0
 
 #: Clipboard 
-map kitty_mod+c copy_to_clipboard
-map kitty_mod+v  paste_from_clipboard
+#map kitty_mod+c copy_to_clipboard
+#map kitty_mod+v  paste_from_clipboard
 map kitty_mod+s  paste_from_selection
+map shift+insert paste_from_selection
 map kitty_mod+o  pass_selection_to_program
 
+#: Scrolling
+#map kitty_mod+up        scroll_line_up
+#map kitty_mod+k         scroll_line_up
+#map kitty_mod+down      scroll_line_down
+#map kitty_mod+j         scroll_line_down
+#map kitty_mod+page_up   scroll_page_up
+#map kitty_mod+page_down scroll_page_down
+#map kitty_mod+home      scroll_home
+#map kitty_mod+end       scroll_end
+#map kitty_mod+h         show_scrollback
+
 #: Window management
-map kitty_mod+enter new_window
+#: map kitty_mod+enter new_window
+#: map kitty_mod+y      launch mutt
+#: map ctrl+f launch --location=first some_program
 map kitty_mod+n new_os_window
 map kitty_mod+w close_window
-map kitty_mod+l next_window
-map kitty_mod+h previous_window
+map kitty_mod+] next_window
+map kitty_mod+[ previous_window
+#map kitty_mod+l next_window
+#map kitty_mod+h previous_window
 map kitty_mod+f move_window_forward
 map kitty_mod+b move_window_backward
 map kitty_mod+` move_window_to_top
-#: map kitty_mod+r start_resizing_window
+map kitty_mod+r start_resizing_window
 map kitty_mod+1 first_window
 map kitty_mod+2 second_window
 map kitty_mod+3 third_window
@@ -31,8 +49,8 @@ map kitty_mod+9 ninth_window
 map kitty_mod+0 tenth_window
 
 #: Tab management
-map kitty_mod+] next_tab
-map kitty_mod+[  previous_tab
+map kitty_mod+right next_tab
+map kitty_mod+left  previous_tab
 map kitty_mod+t     new_tab
 map kitty_mod+q     close_tab
 map kitty_mod+.     move_tab_forward
@@ -40,7 +58,7 @@ map kitty_mod+,     move_tab_backward
 map kitty_mod+alt+t set_tab_title
 
 #: Layout management
-map kitty_mod+m next_layout
+map kitty_mod+L next_layout
 map kitty_mod+v goto_layout tall
 map kitty_mod+s goto_layout stack
 
@@ -48,6 +66,16 @@ map kitty_mod+s goto_layout stack
 map kitty_mod+equal     change_font_size all +2.0
 map kitty_mod+minus     change_font_size all -2.0
 map kitty_mod+backspace change_font_size all 0
+
+#: Select and act on visible text
+#map kitty_mod+e kitten hints
+#map kitty_mod+p>f kitten hints --type path --program -
+#map kitty_mod+p>shift+f kitten hints --type path
+#map kitty_mod+p>l kitten hints --type line --program -
+#map kitty_mod+p>w kitten hints --type word --program -
+#map kitty_mod+p>h kitten hints --type hash --program -
+#map kitty_mod+p>n kitten hints --type linenum
+#map kitty_mod+p>y kitten hints --type hyperlink
 
 #: Miscellaneous
 map kitty_mod+f11    toggle_fullscreen
