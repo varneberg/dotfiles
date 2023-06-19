@@ -22,3 +22,4 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/inst
 git clone --depth=1 https://github.com/spicetify/spicetify-themes.git 
 cd spicetify-themes
 cp -r * ~/.config/spicetify/Themes
+softwareupdate --install-rosetta --agree-to-license
