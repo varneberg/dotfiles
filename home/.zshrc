@@ -1,23 +1,39 @@
-#!/bin/zsh
-autoload -Uz compinit && compinit
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+#ZSH_THEME="robbyrussell"
 
-#PATH
-PATH=~/.scripts/:$PATH
-PATH=~/.cargo/bin/:$PATH
-PATH=~/.local/bin:$PATH
-PATH="$NPM_PACKAGES/bin:$PATH"
-PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
+# Uncomment the following line to change how often to auto-update (in days).
+zstyle ':omz:update' frequency 7
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+	fzf
+	zsh-autosuggestions
+)
+autoload -U compinit
+compinit -i
+
+source $ZSH/oh-my-zsh.sh
 source ~/.zsh/.zsh_alias
-fpath=(~/.zsh/completions $fpath)
-
-# Homebrew
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-	fpath=(~/.zsh/completions $fpath)
-fi
-
+source ~/.zshenv
 
 # Colors
 LS_COLORS="\
@@ -40,62 +56,6 @@ sg=30;43:\
 ";
 export LS_COLORS
 
-# Application keys
-bindkey -e
-typeset -g -A key
-#bindkey -v # Vim keys
-
-# Keybindings
-key[Home]="${terminfo[khome]}"
-key[End]="${terminfo[kend]}"
-key[Insert]="${terminfo[kich1]}"
-key[Backspace]="${terminfo[kbs]}"
-key[Delete]="${terminfo[kdch1]}"
-key[Up]="${terminfo[kcuu1]}"
-key[Down]="${terminfo[kcud1]}"
-key[Left]="${terminfo[kcub1]}"
-key[Right]="${terminfo[kcuf1]}"
-key[PageUp]="${terminfo[kpp]}"
-key[PageDown]="${terminfo[knp]}"
-key[Shift-Tab]="${terminfo[kcbt]}"
-
-# setup key accordingly
-[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
-[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
-[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"    overwrite-mode
-[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
-[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"    delete-char
-[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"        up-line-or-history
-[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"      down-line-or-history
-[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"      backward-char
-[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"     forward-char
-[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-buffer-or-history
-[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
-[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-autoload -Uz add-zle-hook-widget
-function zle_application_mode_start { echoti smkx }
-function zle_application_mode_stop { echoti rmkx }
-add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
-fi
-
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-
-# Zsh autocomplete
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-zstyle ':completion:*' rehash true # Persistent hash
-zstyle ':completion:*:*:cdr:*:*' menu selection
-zstyle ':completion:*' menu select
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*:*:k:*' use-compctl true
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7,bold,underline"
-
-
 # History
 HISTFILE=~/.zsh/.zsh_history
 HISTSIZE=100000
@@ -104,77 +64,53 @@ setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 
-# History search
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
-
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/vegard/.zshrc'
-setopt COMPLETE_ALIASES
-
-#bindkey -M menuselect 'h' vim-backward-char
-#bindkey -M menuselect 'k' vim-up-line-or-history
-#bindkey -M menuselect 'l' vim-forward-char
-#bindkey -M menuselect 'j' vim-down-line-or-history
-#bindkey -v '^?' backward-delete-char
-
-autoload -Uz promptinit && promptinit
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-# End of lines added by compinstall
-
+# Command completion
+source <(helm completion zsh)
+source <(kubectl completion zsh)
+source <(cmctl completion zsh)
+source <(velero completion zsh)
+complete -o nospace -C ~/bin/terraform terraform
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+source ~/.zsh/completions/az.completion
 
 # git
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
-
-# Partial Completion
-## Case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# Plugins
-
-# Removing partial line symbol
-export PROMPT_EOL_MARK=""
-
 # Prompt
 setopt prompt_subst
 setopt PROMPT_SUBST
-
 NEWLINE=$'\n'
 #PROMPT="${NEWLINE}[%F{6}%n@%m%f] \$vcs_info_msg_0_ %F{1}%B%~%b%f${NEWLINE}%F{2}%B↳%b%f "
 PROMPT="${NEWLINE}%F{1}%B%~%b%f \$vcs_info_msg_0_ %F{6}${NEWLINE}%B>%b%f "
-RPROMPT=
+
 zstyle ':vcs_info:git:*' formats '%F{3}(%b)%f' #%F{3}%r%f'
 zstyle ':vcs_info:*' enable git
 
-# Firefox
-#export MOZ_USE_XINPUT2=1
-##export MOZ_X11_EGL=1
-#export MOZ_WEBRENDER=1
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vegard/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vegard/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+#export PATH=$PATH:/Users/vegard/.spicetify
+
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
+# Ruby
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+
+# 1Password
+eval "$(op completion zsh)"; compdef _op op
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 
 autoload -U +X bashcompinit && bashcompinit
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-# tab completion
-source <(helm completion zsh)
-source <(kubectl completion zsh)
-source <(cmctl completion zsh)
-complete -o nospace -C /usr/local/bin/terraform terraform
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-source ~/.zsh/completions/az.completion
-
-
-# Google SDK
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
+complete -o nospace -C /Users/vegard/bin/terraform terraform
