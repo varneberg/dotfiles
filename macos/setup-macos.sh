@@ -5,7 +5,8 @@ then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-brew install $(cat macos/brewlist.txt)
+#brew install $(cat macos/brewlist.txt)
+xargs brew install > brew-leaves.txt
 
 # Configs
 #cp -r config ~/.config

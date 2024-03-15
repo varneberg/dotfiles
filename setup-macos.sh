@@ -1,27 +1,22 @@
-# zsh
-mkdir ~/.zsh
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+# Homebrew
+if !(type brew &>/dev/null)
+then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 cp home/.zsh_alias ~/
 cp home/.zshenv ~/
 cp home/.zshrc ~/
 
-
-# Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-## brew casks
-for i in $(cat macos/brew_cask_list.txt)
-do
-				brew install --cask $i
-done
-
-
-## brew formulaes
-for i in $(cat macos/brewlist.txt)
-do
-				brew install $i
-done
+#brew install $(cat macos/brewlist.txt)
+xargs brew install > macos/brew-leaves.txt
 
 # Configs
-#cp -r config ~/.config
+cp -r config ~/.config
+
+# Vim
+## Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+
