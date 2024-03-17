@@ -15,12 +15,5 @@ xargs brew install > brew-leaves.txt
 ## Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# Spicetify
-# Install
-curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
 
-## Spicetify themes
-git clone --depth=1 https://github.com/spicetify/spicetify-themes.git 
-cd spicetify-themes
-cp -r * ~/.config/spicetify/Themes
 softwareupdate --install-rosetta --agree-to-license

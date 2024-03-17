@@ -8,12 +8,13 @@ fi
 cp home/.zsh_alias ~/
 cp home/.zshenv ~/
 cp home/.zshrc ~/
+cp home.vimrc ~/
 
-#brew install $(cat macos/brewlist.txt)
-xargs brew install > macos/brew-leaves.txt
+brew install $(cat macos/brewlist.txt)
+#xargs brew install --cask < macos/brew_list.txt
 
 # Configs
-cp -r config ~/.config
+cp -r config/*  ~/.config/
 
 # Vim
 ## Vundle
