@@ -24,4 +24,5 @@ cp -r config/*  ~/.config/
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp home.vimrc ~/
 
-
+# Setup nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
