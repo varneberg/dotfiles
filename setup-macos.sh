@@ -26,3 +26,6 @@ cp home.vimrc ~/
 
 # Setup nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Setup scripts
+git clone https://github.com/varneberg/scriptbin.git ~/scripts

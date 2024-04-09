@@ -65,13 +65,11 @@ setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 
 # Command completion
-source <(helm completion zsh)
-source <(kubectl completion zsh)
 source <(cmctl completion zsh)
 source <(velero completion zsh)
 complete -o nospace -C ~/bin/terraform terraform
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-source ~/.zsh/completions/az.completion
+#source ~/.zsh/completions/az.completion
 
 # git
 autoload -Uz vcs_info
@@ -87,9 +85,9 @@ PROMPT="${NEWLINE}%F{1}%B%~%b%f \$vcs_info_msg_0_ %F{6}${NEWLINE}%B>%b%f "
 zstyle ':vcs_info:git:*' formats '%F{3}(%b)%f' #%F{3}%r%f'
 zstyle ':vcs_info:*' enable git
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -97,15 +95,15 @@ if [ -f '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 if [ -f '/Users/vegard/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vegard/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 #export PATH=$PATH:/Users/vegard/.spicetify
 
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+#source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+#source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 # Ruby
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+#source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+#source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 
 # 1Password
-eval "$(op completion zsh)"; compdef _op op
+#eval "$(op completion zsh)"; compdef _op op
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -114,3 +112,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/vegard/bin/terraform terraform
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
