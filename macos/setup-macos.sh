@@ -6,6 +6,7 @@ then
 fi
 
 #brew install $(cat macos/brewlist.txt)
+xargs brew tap > brew-taps.txt
 xargs brew install > brew-leaves.txt
 
 # Configs
