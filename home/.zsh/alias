@@ -1,9 +1,9 @@
 # Shell
-alias ls='gls --group-directories-first --color=auto'
 alias cl='cdr -l'
 alias cr='cdr'
 alias la='ls -lah'
 alias szsh='source ~/.zshrc'
+alias zshrc='vim ~/.zshrc'
 
 # tf
 alias tf="terraform"
@@ -18,12 +18,6 @@ alias kuebctl='kubectl'
 alias kns=kubens
 alias kx=kubectx
 alias kga="kubectl get all,cm,secret,ing"
-
-# MacOS
-#alias ibrew="arch -x86_64 /usr/local/bin/brew"
-alias rosetta="arch -x86_64"
-#alias rosetta-terraform="/usr/local/Cellar/terraform/1.3.1/bin/terraform"
-#alias rtf="rosetta-terraform"
 
 # git
 alias g="git"

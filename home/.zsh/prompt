@@ -1,0 +1,13 @@
+# Prompt
+autoload -Uz vcs_info # git
+precmd() { vcs_info }
+setopt prompt_subst
+setopt PROMPT_SUBST
+NEWLINE=$'\n'
+#PROMPT="${NEWLINE}[%F{6}%n@%m%f] \$vcs_info_msg_0_ %F{1}%B%~%b%f${NEWLINE}%F{2}%B↳%b%f "
+PROMPT="${NEWLINE}%F{1}%B%~%b%f \$vcs_info_msg_0_ %F{6}${NEWLINE}%B>%b%f "
+#RPROMPT='$(azure_prompt_info)'
+
+
+zstyle ':vcs_info:git:*' formats '%F{3}(%b)%f' #%F{3}%r%f'
+zstyle ':vcs_info:*' enable git
