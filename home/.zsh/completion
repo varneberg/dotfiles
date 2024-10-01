@@ -1,0 +1,27 @@
+
+# Command completion
+autoload -U +X bashcompinit && bashcompinit
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#source <(velero completion zsh)
+source <(cmctl completion zsh)
+complete -o nospace -C $HOME/bin/terraform terraform
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+source ~/.zsh/completions/az.completion
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vegard/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vegard/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vegard/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+#export PATH=$PATH:/Users/vegard/.spicetify
+
+#source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+#source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
+# 1Password
+#eval "$(op completion zsh)"; compdef _op op
+source <(yq completion zsh)

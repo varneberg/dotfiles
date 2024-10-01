@@ -1,0 +1,6 @@
+# MacOS
+alias ls='gls --group-directories-first --color=auto'
+alias grep='ggrep'
+alias sed='gsed'
+alias rosetta="arch -x86_64"
+
