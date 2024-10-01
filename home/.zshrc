@@ -21,6 +21,7 @@ compinit -i
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/alias
+#source ~/.zsh/alias-macos
 source ~/.zshenv
 source ~/.zsh/prompt
 source ~/.zsh/colors
