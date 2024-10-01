@@ -1,55 +1,6 @@
-# Shell
+# MacOS
 alias ls='gls --group-directories-first --color=auto'
 alias grep='ggrep'
 alias sed='gsed'
-alias cl='cdr -l'
-alias cr='cdr'
-alias la='ls -lah'
-alias szsh='source ~/.zshrc'
-alias zshrc='vim ~/.zshrc'
-
-# tf
-alias tf="terraform"
-alias tfs="tfswitch"
-alias ta="terraform apply -auto-approve"
-alias tp="terraform plan"
-alias ti="terraform init -reconfigure"
-
-# k8s
-alias k='kubectl'
-alias kuebctl='kubectl'
-alias kns=kubens
-alias kx=kubectx
-alias kga="kubectl get all,cm,secret,ing"
-
-# MacOS
-#alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias rosetta="arch -x86_64"
-#alias rosetta-terraform="/usr/local/Cellar/terraform/1.3.1/bin/terraform"
-#alias rtf="rosetta-terraform"
-
-# git
-alias g="git"
-alias gadd="git add ."
-alias gits="git status"
-alias gitp="git push"
-alias gp="git pull"
-alias gitd="git diff"
-alias gpnv="git push --no-verify"
-alias gm="git checkout main"
-alias gcb="git checkout -b"
-#alias cg="cd $(git rev-parse --show-toplevel)"
-
-# path
-alias python=python3
-
-alias kgpa="kubectl get pod -A"
-alias kgp="kubectl get pod"
-alias kgs="kubectl get service"
-alias kgsa="kubectl get service -A"
-
-# other
-alias spicetify="~/.spicetify/spicetify"
-alias sshk="kitten ssh"
-alias nc="netcat"
 
