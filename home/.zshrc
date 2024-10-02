@@ -14,7 +14,6 @@ plugins=(
 	fzf
 	zsh-autosuggestions
 	#azure 
-	git
 )
 autoload -U compinit
 compinit -i
