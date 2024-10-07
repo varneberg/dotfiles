@@ -1,0 +1,8 @@
+azure/kubelogin
+derailed/k9s
+osx-cross/avr
+oven-sh/bun
+spicetify/tap
+tinygo-org/tools
+warrensbox/tap
+wix/brew
