@@ -1,0 +1,86 @@
+[
+  // Navigation Splits
+  {
+    "key": "Shift+Ctrl+h",
+    "command": "workbench.action.navigateLeft",
+  },
+  {
+    "key": "Shift+Ctrl+l",
+    "command": "workbench.action.navigateRight",
+  },
+  {
+    "key": "Shift+Ctrl+k",
+    "command": "workbench.action.navigateUp",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "Shift+ctrl+j",
+    "command": "workbench.action.navigateDown",
+  },
+  {
+    "key": "Enter",
+    "command": "list.select",
+    "when": "listFocus",
+  },
+  // Change tab focus
+  {
+    "key": "Shift+ctrl+]",
+    "command": "workbench.action.nextEditor",
+    "when": "vim.mode != 'Insert' && editorFocus",
+  },
+  {
+    "key": "Shift+ctrl+[",
+    "command": "workbench.action.previousEditor",
+    "when": "vim.mode != 'Insert' && editorFocus",
+  },
+  // Move tab to other editor
+  {
+    "key": "Shift+alt+]",
+    "command": "workbench.action.moveEditorToNextGroup",
+    "when": "vim.mode != 'Insert' && editorFocus",
+  },
+  {
+    "key": "Shift+alt+[",
+    "command": "workbench.action.moveEditorToPreviousGroup",
+    "when": "vim.mode != 'Insert' && editorFocus",
+  },
+  {
+    "key": "cmd+.",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+r",
+    "command": "code-runner.run",
+  },
+  {
+    "key": "Shift+Ctrl+Enter",
+    "command": "workbench.action.splitEditorRight",
+  },
+  {
+    "key": "Shift+Ctrl+m",
+    "command": "workbench.action.splitEditorDown",
+  },
+  {
+    "key": "cmd+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "cmd+n",
+    "command": "explorer.newFile"
+  },
+  {
+    "key": "TAB",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "workbench.action.maximizeEditorHideSidebar"
+  },
+  {
+    "key": "cmd+k cmd+m",
+    "command": "-workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  }
+]
