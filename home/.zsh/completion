@@ -5,7 +5,8 @@ autoload -U +X bashcompinit && bashcompinit
 
 #source <(velero completion zsh)
 source <(cmctl completion zsh)
-complete -o nospace -C $HOME/bin/terraform terraform
+#complete -o nospace -C $HOME/bin/terraform terraform
+complete -o nospace -C $(which terraform) terraform
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 source ~/.zsh/completions/az.completion
 
