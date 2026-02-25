@@ -41,9 +41,11 @@ grep
 groff
 gsettings-desktop-schemas
 guile
+hashicorp/tap/terraform
 hcl2json
 helm
 hicolor-icon-theme
+hydra
 imagemagick
 java-service-wrapper
 jpeg
@@ -68,12 +70,10 @@ neofetch
 neovim
 netcat
 nmap
-nomad
 nvm
 openjdk
 openjdk@11
 openssh
-openssl@1.1
 openvino
 openvpn
 osx-cross/avr/avr-gcc@9
@@ -88,8 +88,6 @@ rxvt-unicode
 shellcheck
 six
 sl
-sonarqube-lts
-spicetify-cli
 spotifyd
 starship
 startup-notification

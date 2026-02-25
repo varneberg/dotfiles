@@ -1,5 +1,6 @@
 azure/kubelogin
 derailed/k9s
+hashicorp/tap
 osx-cross/avr
 oven-sh/bun
 spicetify/tap
